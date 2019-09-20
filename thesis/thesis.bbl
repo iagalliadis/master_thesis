@@ -1,0 +1,380 @@
+\begin{thebibliography}{10}
+
+\bibitem{myo}
+Myo;.
+\newblock Available from: \url{https://myo.com}.
+
+\bibitem{ziegler-graham_estimating_2008}
+Ziegler-Graham K, MacKenzie EJ, Ephraim PL, Travison TG, Brookmeyer R.
+\newblock Estimating the prevalence of limb loss in the {United} {States}: 2005
+  to 2050.
+\newblock Archives of physical medicine and rehabilitation.
+  2008;89(3):422--429.
+
+\bibitem{owings_ambulatory_1998}
+Owings MF, Kozak LJ.
+\newblock Ambulatory and inpatient procedures in the {United} {States}, 1996.
+\newblock Vital and health statistics Series 13, Data from the National Health
+  Survey. 1998;(139):1--119.
+
+\bibitem{varma_physical_2014}
+Varma P, Stineman MG, Dillingham TR.
+\newblock Physical {Medicine} and {Rehabilitation} {Clinics} of {North}
+  {America} {Epidemiology} of {Limb} {Loss}.
+\newblock Physical medicine and rehabilitation clinics of North America. 2014
+  Feb;25(1):1--8.
+\newblock Available from:
+  \url{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4533906/}.
+
+\bibitem{robbins_mortality_2008}
+Robbins JM, Strauss G, Aron D, Long J, Kuba J, Kaplan Y.
+\newblock Mortality rates and diabetic foot ulcers: is it time to communicate
+  mortality risk to patients with diabetic foot ulceration?
+\newblock Journal of the American Podiatric Medical Association.
+  2008;98(6):489--493.
+
+\bibitem{tenore_towards_2007}
+Tenore F, Ramos A, Fahmy A, Acharya S, Etienne-Cummings R, Thakor NV.
+\newblock Towards the control of individual fingers of a prosthetic hand using
+  surface {EMG} signals.
+\newblock In: Engineering in {Medicine} and {Biology} {Society}, 2007. {EMBS}
+  2007. 29th {Annual} {International} {Conference} of the {IEEE}. IEEE; 2007.
+  p. 6145--6148.
+
+\bibitem{dillingham_limb_2002}
+Dillingham TR, Pezzin LE, MacKenzie EJ.
+\newblock Limb amputation and limb deficiency: epidemiology and recent trends
+  in the {United} {States}.
+\newblock Southern medical journal. 2002;95(8):875--884.
+
+\bibitem{weir_persons_2000}
+Weir RF, Grahn EC.
+\newblock Persons with partial hand amputations.
+\newblock In: Engineering in {Medicine} and {Biology} {Society}, 2000.
+  {Proceedings} of the 22nd {Annual} {International} {Conference} of the
+  {IEEE}. vol.~1. IEEE; 2000. p. 427--430.
+
+\bibitem{zhang_tomo:_2015}
+Zhang Y, Harrison C.
+\newblock Tomo: {Wearable}, low-cost electrical impedance tomography for hand
+  gesture recognition.
+\newblock In: Proceedings of the 28th {Annual} {ACM} {Symposium} on {User}
+  {Interface} {Software} \& {Technology}. ACM; 2015. p. 167--173.
+\newblock Available from: \url{http://dl.acm.org/citation.cfm?id=2807480}.
+
+\bibitem{shin_dynamic_2016}
+Shin S, Sung W.
+\newblock Dynamic hand gesture recognition for wearable devices with low
+  complexity recurrent neural networks.
+\newblock In: 2016 {IEEE} {International} {Symposium} on {Circuits} and
+  {Systems} ({ISCAS}); 2016. p. 2274--2277.
+
+\bibitem{kakoty_exploring_2015}
+Kakoty NM, Saikia A, Hazarika SM.
+\newblock Exploring a family of wavelet transforms for {EMG}-based grasp
+  recognition.
+\newblock Signal, Image and Video Processing. 2015;9(3):553--559.
+\newblock Available from:
+  \url{http://link.springer.com/article/10.1007/s11760-013-0477-7}.
+
+\bibitem{zhao_study_2007}
+Zhao Z, Chen X, Zhang X, Yang J, Tu Y, Lantz V, et~al.
+\newblock Study on online gesture {sEMG} recognition.
+\newblock Advanced Intelligent Computing Theories and Applications With Aspects
+  of Theoretical and Methodological Issues. 2007;p. 1257--1265.
+\newblock Available from:
+  \url{http://www.springerlink.com/index/G771691106786P23.pdf}.
+
+\bibitem{nod}
+Nod;.
+\newblock Available from: \url{https://nod.com}.
+
+\bibitem{mycestro}
+Mycestro;.
+\newblock Available from: \url{http://www.mycestro.com/}.
+
+\bibitem{nymoen_mumyoevaluating_2015}
+Nymoen K, Haugen MR, Jensenius AR.
+\newblock Mumyo–evaluating and exploring the myo armband for musical
+  interaction; 2015. Available from:
+  \url{https://www.duo.uio.no/handle/10852/43980}.
+
+\bibitem{myo_arm}
+Meet the Man With a Myo-Controlled Robotic Arm;.
+\newblock Available from:
+  \url{http://developerblog.myo.com/meet-the-man-with-a-myo-controlled-robotic-arm/}.
+
+\bibitem{kutafina_wearable_2015}
+Kutafina E, Laukamp D, Jonas SM.
+\newblock Wearable {Sensors} in {Medical} {Education}: {Supporting} {Hand}
+  {Hygiene} {Training} with a {Forearm} {EMG}.
+\newblock Västeras, Sweden; 2015. Available from:
+  \url{http://ebooks.iospress.nl/publication/39272}.
+
+\bibitem{yang2015teleoperated}
+Yang C, Chang S, Liang P, Li Z, Su CY.
+\newblock Teleoperated robot writing using emg signals.
+\newblock In: Information and Automation, 2015 IEEE International Conference
+  on. IEEE; 2015. p. 2264--2269.
+
+\bibitem{dash_airscript-creating_2017}
+Dash A, Sahu A, Shringi R, Gamboa JCB, Afzal MZ, Malik MI, et~al.
+\newblock {AirScript}-{Creating} {Documents} in {Air}.
+\newblock arXiv preprint arXiv:170511181. 2017;.
+
+\bibitem{kosmidou_sign_2009}
+Kosmidou VE, Hadjileontiadis LJ.
+\newblock Sign language recognition using intrinsic-mode sample entropy on
+  {sEMG} and accelerometer data.
+\newblock IEEE transactions on biomedical engineering. 2009;56(12):2879--2890.
+\newblock Available from:
+  \url{http://ieeexplore.ieee.org/abstract/document/4760276/}.
+
+\bibitem{cheng_emotion_2008}
+Cheng B, Liu G.
+\newblock Emotion recognition from surface {EMG} signal using wavelet transform
+  and neural network.
+\newblock In: Proceedings of {The} 2nd {International} {Conference} on
+  {Bioinformatics} and {Biomedical} {Engineering} ({ICBBE}); 2008. p.
+  1363--1366.
+\newblock Available from:
+  \url{http://www.paper.edu.cn/en_releasepaper/downPaper/200706-289}.
+
+\bibitem{ververidis_pottery_2016}
+Ververidis D, Karavarsamis S, Nikolopoulos S, Kompatsiaris I.
+\newblock Pottery gestures style comparison by exploiting {Myo} sensor and
+  forearm anatomy.
+\newblock In: Proceedings of the 3rd {International} {Symposium} on {Movement}
+  and {Computing}. ACM; 2016. p.~3.
+\newblock Available from: \url{http://dl.acm.org/citation.cfm?id=2948924}.
+
+\bibitem{EMG_device_price}
+Portable EMG/EP system;.
+\newblock Available from:
+  \url{https://www.alibaba.com/product-detail/Portable-EMG-EP-system_1489243551.html?spm=a2700.7724857.main07.27.144bb7b6J31hPy}.
+
+\bibitem{Disposable_Hypodermic_Needle_Electrodes}
+Disposable Hypodermic Needle Electrodes;.
+\newblock Available from:
+  \url{https://digitimer.com/products/clinical-neurophysiology/neurodiagnostic-accessories/disposable-hypodermic-needle-electrodes/}.
+
+\bibitem{surface_emg_electrodes}
+EMG surface electrodes;.
+\newblock Available from: \url{http://medimaxtech.com/trio-electrodes/}.
+
+\bibitem{winter_crosstalk_1994}
+Winter DA, Fuglevand AJ, Archer SE.
+\newblock Crosstalk in surface electromyography: theoretical and practical
+  estimates.
+\newblock Journal of Electromyography and Kinesiology. 1994;4(1):15--26.
+
+\bibitem{sakshat_virtual_labs}
+Non-stationary nature of speech signal (theory);.
+\newblock Available from:
+  \url{http://iitg.vlab.co.in/?sub=59&brch=164&sim=371&cnt=1104}.
+
+\bibitem{bonato_time-frequency_2001}
+Bonato P, Roy SH, Knaflitz M, De~Luca CJ.
+\newblock Time-frequency parameters of the surface myoelectric signal for
+  assessing muscle fatigue during cyclic dynamic contractions.
+\newblock IEEE Transactions on Biomedical Engineering. 2001;48(7):745--753.
+
+\bibitem{thalmic}
+Thalmic blog;.
+\newblock Available from: \url{http://blog.thalmic.com/}.
+
+\bibitem{myo_developer}
+Myo Developer;.
+\newblock Available from: \url{https://developer.thalmic.com/}.
+
+\bibitem{IMU}
+Logging IMU and Raw EMG Data;.
+\newblock Available from:
+  \url{http://developerblog.myo.com/myocraft-logging-imu-and-raw-emg-data/}.
+
+\bibitem{fig:myo_on_armband}
+Raw and Uncut Drops Today;.
+\newblock Available from:
+  \url{http://developerblog.myo.com/raw-uncut-drops-today/}.
+
+\bibitem{dietterich_machine_2002}
+Dietterich T.
+\newblock Machine learning for sequential data: {A} review.
+\newblock Structural, syntactic, and statistical pattern recognition. 2002;p.
+  227--246.
+
+\bibitem{whittaker_calculus_1924}
+Whittaker ET, Robinson G.
+\newblock The calculus of observations: {An} introduction to numerical
+  analysis.
+\newblock Dover Publications; 1924.
+
+\bibitem{kenney_mathematics_2013}
+Kenney JF.
+\newblock Mathematics of statistics.
+\newblock D. Van Nostrand Company Inc; Toronto; Princeton; New Jersey; London;
+  New York,; Affiliated East-West Press Pvt-Ltd; New Delhi; 2013.
+
+\bibitem{sethares_rhythm_2007}
+Sethares WA.
+\newblock Rhythm and transforms.
+\newblock Springer Science \& Business Media; 2007.
+
+\bibitem{polikar_wavelet_1996}
+Polikar R.
+\newblock The wavelet tutorial. 1996;Available from:
+  \url{http://person.hst.aau.dk/enk/ST8/wavelet_tutotial.pdf}.
+
+\bibitem{lee_wavelet_1994}
+Lee DT, Yamamoto A.
+\newblock Wavelet analysis: theory and applications.
+\newblock Hewlett Packard journal. 1994;45:44--44.
+
+\bibitem{fig:wavelets}
+Wavelet Toolbox Overview;.
+\newblock Available from:
+  \url{https://de.mathworks.com/videos/wavelet-toolbox-overview-115893.html}.
+
+\bibitem{giurgiutiu_comparison_2003}
+Giurgiutiu V, Yu L.
+\newblock Comparison of short-time fourier transform and wavelet transform of
+  transient and tone burst wave propagation signals for structural health
+  monitoring.
+\newblock In: Proceedings of 4th international workshop on structural health
+  monitoring; 2003. p. 1267--1274.
+
+\bibitem{mao_orthogonal_2004}
+Mao KZ.
+\newblock Orthogonal forward selection and backward elimination algorithms for
+  feature subset selection.
+\newblock IEEE Transactions on Systems, Man, and Cybernetics, Part B
+  (Cybernetics). 2004;34(1):629--634.
+
+\bibitem{jovic_review_2015}
+Jović A, Brkić K, Bogunović N.
+\newblock A review of feature selection methods with applications.
+\newblock In: Information and {Communication} {Technology}, {Electronics} and
+  {Microelectronics} ({MIPRO}), 2015 38th {International} {Convention} on.
+  IEEE; 2015. p. 1200--1205.
+
+\bibitem{Goodfellow-et-al-2016}
+Goodfellow I, Bengio Y, Courville A.
+\newblock Deep Learning.
+\newblock MIT Press; 2016.
+\newblock \url{http://www.deeplearningbook.org}.
+
+\bibitem{fig:biological_neuron}
+NEUROBIOLOGY NEURODEVELOPMENT: NATURE AND NUTURE;.
+\newblock Available from: \url{http://www.4mylearn.org/Neurobiology.html}.
+
+\bibitem{hinton_deep_2012}
+Hinton G, Deng L, Yu D, Dahl GE, Mohamed Ar, Jaitly N, et~al.
+\newblock Deep neural networks for acoustic modeling in speech recognition:
+  {The} shared views of four research groups.
+\newblock IEEE Signal Processing Magazine. 2012;29(6):82--97.
+
+\bibitem{girshick_rich_2014}
+Girshick R, Donahue J, Darrell T, Malik J.
+\newblock Rich feature hierarchies for accurate object detection and semantic
+  segmentation.
+\newblock In: Proceedings of the {IEEE} conference on computer vision and
+  pattern recognition; 2014. p. 580--587.
+
+\bibitem{gawehn_deep_2016}
+Gawehn E, Hiss JA, Schneider G.
+\newblock Deep learning in drug discovery.
+\newblock Molecular informatics. 2016;35(1):3--14.
+
+\bibitem{park_deep_2015}
+Park Y, Kellis M.
+\newblock Deep learning for regulatory genomics.
+\newblock Nature biotechnology. 2015;33(8):825--826.
+
+\bibitem{dechter_learning_1986}
+Dechter R.
+\newblock Learning while searching in constraint-satisfaction problems.
+\newblock University of California, Computer Science Department, Cognitive
+  Systems Laboratory; 1986.
+
+\bibitem{deng_three_2012}
+Deng L.
+\newblock Three classes of deep learning architectures and their applications:
+  a tutorial survey.
+\newblock APSIPA transactions on signal and information processing. 2012;.
+
+\bibitem{mikolov_recurrent_2010}
+Mikolov T, Karafiát M, Burget L, Černocky J, Khudanpur S.
+\newblock Recurrent neural network based language model.
+\newblock In: Eleventh {Annual} {Conference} of the {International} {Speech}
+  {Communication} {Association}; 2010. .
+
+\bibitem{gelfand_calculus_2000}
+Gelfand IM, Silverman RA.
+\newblock Calculus of variations.
+\newblock Courier Corporation; 2000.
+
+\bibitem{mccormickml}
+McCormick C. Gradient Descent Derivation; 2014.
+\newblock Available from:
+  \url{http://mccormickml.com/2014/03/04/gradient-descent-derivation/}.
+
+\bibitem{ayearofai}
+Kapur R. Neural Networks and The Backpropagation Algorithm, Explained; 2016.
+\newblock Available from:
+  \url{https://ayearofai.com/rohan-lenny-1-neural-networks-the-backpropagation-algorithm-explained-abf4609d4f9d}.
+
+\bibitem{vijayan_surface_2015}
+Vijayan AE, John A, Sudheer AP.
+\newblock Surface electromyography based finger flexion recognition.
+\newblock In: Computational {Intelligence} \& {Communication} {Technology}
+  ({CICT}), 2015 {IEEE} {International} {Conference} on. IEEE; 2015. p.
+  592--596.
+\newblock Available from:
+  \url{http://ieeexplore.ieee.org/abstract/document/7078772/}.
+
+\bibitem{abreu_evaluating_2016}
+Abreu JG, Teixeira JM, Figueiredo LS, Teichrieb V.
+\newblock Evaluating sign language recognition using the myo armband.
+\newblock In: Virtual and {Augmented} {Reality} ({SVR}), 2016 {XVIII}
+  {Symposium} on. IEEE; 2016. p. 64--70.
+
+\bibitem{benalcazar_hand_2017}
+Benalcázar ME, Jaramillo AG, Zea A, Páez A, Andaluz VH.
+\newblock Hand gesture recognition using machine learning and the {Myo}
+  armband.
+\newblock In: Signal {Processing} {Conference} ({EUSIPCO}), 2017 25th
+  {European}. IEEE; 2017. p. 1040--1044.
+
+\bibitem{cote-allard_deep_2018}
+Côté-Allard U, Fall CL, Drouin A, Campeau-Lecours A, Gosselin C, Glette K,
+  et~al.
+\newblock Deep {Learning} for {Electromyographic} {Hand} {Gesture} {Signal}
+  {Classification} by {Leveraging} {Transfer} {Learning}.
+\newblock arXiv preprint arXiv:180107756. 2018;.
+
+\bibitem{atzori_deep_2016}
+Atzori M, Cognolato M, Müller H.
+\newblock Deep learning with convolutional neural networks applied to
+  electromyography data: a resource for the classification of movements for
+  prosthetic hands.
+\newblock Frontiers in neurorobotics. 2016;10:9.
+
+\bibitem{schmidhuber_deep_2015}
+Schmidhuber J.
+\newblock Deep learning in neural networks: {An} overview.
+\newblock Neural networks. 2015;61:85--117.
+
+\bibitem{he_deep_2016}
+He K, Zhang X, Ren S, Sun J.
+\newblock Deep residual learning for image recognition.
+\newblock In: Proceedings of the {IEEE} conference on computer vision and
+  pattern recognition; 2016. p. 770--778.
+
+\bibitem{qian_very_2016}
+Qian Y, Woodland PC.
+\newblock Very deep convolutional neural networks for robust speech
+  recognition.
+\newblock In: Spoken {Language} {Technology} {Workshop} ({SLT}), 2016 {IEEE}.
+  IEEE; 2016. p. 481--488.
+
+\end{thebibliography}

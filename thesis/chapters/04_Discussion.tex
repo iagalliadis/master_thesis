@@ -1,0 +1,55 @@
+\chapter{Discussion}
+In this chapter we are going to review the steps of each stage of the pipeline we proposed and we will discuss the presented results of the parameter adjustment phase and the evaluation of the final model.
+\section{Parameter Adjustment}
+Although the testing of the final neural network may not give the optimal detection accuracies, the adjustment of the parameters has proven to increase the detection accuracies. Furthermore, the outputs from the ANNs varies for each initialization so a potential lower or higher detection accuracy may be a result of a random variation. During the process of adjusting the parameter we classified the data between the extension and flexion of the thumb.\\
+\subsection{Increase on the window step}
+Firstly, we trained a neural network with one hidden layer and five hidden neurons on each layer. The initial problem we had was that each and every clip of the isolated gestures had different durations. So, we needed to trim them into same duration clips to have a consistent size matrices because MatLab is more efficient with manipulating matrices instead of cells. Thus, on the dataset we extracted for a thumb extension and flexion we applied a window of 128 and a step of 1 between each window and this lead to constructing our same size clips. The result was to extract a lot of data which affected the training time. The training time was 12 days. The detection accuracies for the first experiment proved to be below our expectations. Firstly, to overcome the problem with the training time we decided to increase the step between the different windows. We increased the step from one to 64. When we decreased the amount of the extracted data increasing the windowing step to 64 the accuracies slightly increased as we can see in Fig. \ref{fig:HL1HN5step64}.\\
+\subsection{Forward Selection, Backward Elimination: a hybrid approach}
+The next combinatorial experiment was conducted to examine which features are performing well when combined in pairs. For the next block of experiments, we decided to combine every two features and then train each pair on a neural network with one hidden layer and 5 hidden neurons and test against the corresponding pair.\\
+ Table. \ref{table:perf_features_duet} shows us that the best three detection accuracies were between the pair of rms-sym8 with 69.9\% accuracy, rms-bior1.3 with 70.0\% accuracy and sym4-sym8 with 70.3\% accuracy. All the data used in these experiments were extracted using the 64 window step. We can also notice in Table. \ref{table:perf_features_duet} that there is a marginal difference between the detection accuracies of the differents duplets. The lowest detection accuracy was noted for the combination of sym8 with bior2.2. However, we cannot exclude the chance of getting these detection accuracies randomly as we know that the outputs of the neural networks are fluctuating on each and every run.\\
+Next, we focused on the three best performances and concatenated each pair and used it as a new, fixed pair with which we concatenate each other feature. This resulted in creating a triplet of different features concatenated together and used this triplet to train the neural network. With each different triplet we trained a neural network with one hidden layer and 5 hidden neurons and found the derived detection accuracies. We observe from the Tables. \ref{table:sym4sym8}, \ref{table:rmssym8}, \ref{table:rmsbior13} that best detection accuracies are coming from the duplet sym4-sym8. The difference between this duplet and the other two is that the duplet sym4-sym8 is consisted of wavelets with three decomposition levels.\\
+For the next block of experiments we decided to take the best performed duplet which is the sym4-sym8 and combine this duplet with each other feature to train different neural networks. In this block of experiments, we incremented the number of hidden layers by one. Normally, when the detection accuracy stops improving then we stopped increasing the number of hidden layers and focused on the features that performed the best. In our case, since the  huge amount of data with the increasing number of hidden layers caused an increasing training time. Thus,  we decided to set the maximum limit for 13 layers. In the Table. \ref{table:sym4sym8_1-5layers} we see that for the triplet sym4-sym8-rms the detection accuracy follows an arbitrary pattern and noted the lowest performance as well. We note here that the features with  the best constantly increasing performance are the wavelets and in particular bior2.2 and coif3. In the following Fig. \ref{fig:accuracy_heatmap} we can see the fluctuating values between the different features for each number of layers which we used in the neural networks.
+\section{Evaluation results}
+According to the results we received from the classification of the evaluation data in Table. \ref{table:sym4sym8_8layers} we can not receive a confident picture of which of the features are performing well. We observe that our neural model underperformed for some gestures and performed better for some other gestures. For example, we noted the best performance for all the three features for the extension and flexion of the pinky finger. For the detection accuracy of the finger gesture G9 which is the data we acquired from the extension and flexion of the thumbs from the 21 subjects  we can conclude that there is not an overfitting. Below we will show some statistics from the performance of our neural network with the new acquired data based on the results from the Table \ref{table:sym4sym8_8layers}.\\
+The average performance per feature is depicted below:
+\begin{table}[H]
+\renewcommand{\arraystretch}{1.2}
+\centering
+\begin{tabular}{ |p{3.8cm}|p{1.4cm}|p{1.4cm}|p{1.4cm}|}
+ \hline
+ \multicolumn{4}{|c|}{sym4sym8} \\
+ \hline
+  Features & db8 & bior2.2 & coif3 \\
+ \hline
+ Average performance & $63.4\%$ & $66.15\%$ & $63.0\%$ \\
+ \hline
+\end{tabular}
+\caption{Average detection accuracies per feature from Table \ref{table:sym4sym8_8layers}}
+\end{table}
+The average detection accuracy between the different finger gestures is depicted below: 
+\begin{table}[H]
+\renewcommand{\arraystretch}{1.2}
+\centering
+\begin{tabular}{|p{1.4cm}|p{2.2cm}|p{1.4cm}|p{2.2cm}|}
+ \hline
+ \multicolumn{4}{|c|}{sym4sym8} \\
+ \hline
+  Gestures & Average performance & Gestures & Average performance \\
+ \hline
+ G1 & $63.0\%$ & G8  & $66.9\%$\\
+ G2 & $68.6\%$ & G9  & $63.3\%$\\
+ G3 & $67.3\%$ & G10 & $67.1\%$\\
+ G4 & $61.7\%$ & G11 & $70.4\%$\\
+ G5 & $53.8\%$ & G12 & $59.7\%$\\
+ G6 & $73.9\%$ & G13 & $68.1\%$\\
+ G7 & $54.5\%$ & G14 & $59.5\%$\\
+ \hline
+\end{tabular}
+\caption{Average detection accuracies per finger gesture from Table \ref{table:sym4sym8_8layers}}
+\end{table}
+The variance in the results can be justified because the acquired signals are coming from 21 different subjects where the majority of them executed the protocolled finger gestures slightly differently. What's more, the height of the placement of the Myo armband on the forearm could not be in all 21 subjects exactly same but it was estimated approximately. That means that the acquired signals might be recorded from different forearm muscles from subject to subject.  Furthermore, the signals from different fingers have varying amplitude which could lead to a biased performance of the classification algorithm. Also, the fact that multiple muscles are flexing and extending the fingers can affect the results of the classification algorithm. We observed also, that  the majority of the subjects when flexing and extending their pinky finger caused the ring finger to get strained as well. Last but not least the EMG's amplitude and frequency is affected by each subject's percent of fat, muscle tissue, hairiness, muscular fatigue, the subject's age, neuromuscular diseases and the temperature of the skin. \\
+A lot of literature related to our work can be found yet there are some basic differences in the tools that were used. In the work of Vijayan et al. \cite{vijayan_surface_2015}, they acquired 6-channel EMG signals from the flexion of the five fingers of the hand and for the classification they used Multi class SVMs. Their classification results for the flexions of the thumb, index, middle, ring and pinky were 100\%, 88.8\%, 94.4\%, 100\%, 83.3\% respectively. \\
+In the work of Abreu et al. \cite{abreu_evaluating_2016} they acquired EMG signals with the Myo armband regarding the recognition of gestures of the LIBRAS (Brazilian Sign Language) alphabet. For the classification of the 20 different hand gestures they used SVMs. In their real time evaluation they had good performances for the letters that could be easily performed with strength and as for the gestures that could not be performed with strength or because their gestures are similar to the gestures of other letters the classifier's performance proofed to be worse.\\
+In the work of Benalcázar et al. \cite{benalcazar_hand_2017} the developed an online system that could classify with 86\% detection accuracy on the contrary with 83\% detection accuracy of the Myo proprietary software on five different hand gestures such as pinch, fist, open, wave in and wave out. For the feature extraction they used rectification of the signal combined with a low-pass Butterworth filter because it reduces the noises and smooths each channel and  they classified the different hand gestures with the k-NN classification algorithm.\\
+In the work of Côté-Allard et al. \cite{cote-allard_deep_2018} they recorded two datasets from the forearms of 19 and 17 able-bodied participants and they used the first dataset for the pre-training and the second dataset for the evaluation. They proposed two separate convolutional deep neural networks one for the CWT data and one for the STFT data. They concluded that the CWT-convolutional neural network outperformed the STFT-based with an average accuracy of 98.31\% for the recognition of 7 hand gestures in 17 participants.\\
+In the work of Atzori et al. \cite{atzori_deep_2016} they proposed a Convolutional Neural Network for the classification of 50 hand movements acquired from 67 intact subjects and 11 transradial amputees. The whole dataset was divided into 3 subsets. The average classification accuracy of the convolutional neural network was 66.5\% on the first dataset which and 60.27\% for the second dataset. For the third dataset which consisted only from the signal of the amputees, the convolutional neural network had an accuracy of 38.09\%. To acquire the signals from the amputees they were asked to imagine imitating the movements with the missing hand as naturally as possible. 

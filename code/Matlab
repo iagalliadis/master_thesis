@@ -1,0 +1,361 @@
+%% Import data for extensions and flexions of the thumb
+
+for i=1:230
+   Ext{i} = csvread(strcat('C:\Temp\MATLAB\MasterArbeit\thumb_flex_extend\cutted\extensions\extension_',num2str(i),'.csv'));
+end
+
+for i=1:207
+   Flx{i} = csvread(strcat('C:\Temp\MATLAB\MasterArbeit\thumb_flex_extend\cutted\flexions\flexion_',num2str(i),'.csv'));
+end
+
+%% plot the first EMG Ext signal of the cell 
+
+lineStyles = {'-', '--', ':', '-.'};
+myColors = distinguishable_colors(8);
+legend_str = cell(8,1);
+
+for i=2:9
+plot(linspace(0,1,length(Ext{1}(:,1))),Ext{1}(:,i),...
+    'linestyle',lineStyles{rem(i-1,numel(lineStyles))+1},...
+    'color',myColors(i-1,:),...
+    'linewidth',1.5);
+hold on;
+legend_str{i-1}=num2str(i-1);
+end
+legend(strcat('ch',legend_str),'location','Northwest')
+title('EMG signal for thumb extension')
+
+% plot the first EMG Flx signal of the cell 
+
+lineStyles = {'-', '--', ':', '-.'};
+myColors = distinguishable_colors(8);
+legend_str = cell(8,1);
+
+for i=2:9
+plot(linspace(0,1,length(Flx{1}(:,1))),Flx{1}(:,i),...
+    'linestyle',lineStyles{rem(i-1,numel(lineStyles))+1},...
+    'color',myColors(i-1,:),...
+    'linewidth',1.5);
+hold on;
+legend_str{i-1}=num2str(i-1);
+end
+legend(strcat('ch',legend_str),'location','Northwest')
+title('EMG signal for thumb flexion')
+
+%% STFT for EMG extension signal
+for j=1:230
+    for i=1:8
+        stft_data{j,i} = num2cell(spectrogram(Ext{j}(:,i+1)));
+    end
+end
+
+%plot the STFT for extension
+figure
+xbounds = xlim();
+spectrogram(Ext{1}(:,8));
+set(gca, 'xtick', 0:0.01:1);
+xtickangle(50);
+title('STFT for the 7th channel of extension');
+
+
+% STFT for EMG flexion signal
+for j=1:207
+    for i=1:8
+        stft_data{j,i} = num2cell(spectrogram(Flx{j}(:,i+1)));
+    end
+end
+
+%plot the STFT for flexion
+figure
+spectrogram(Flx{1}(:,8));
+set(gca, 'xtick', 0:0.01:1);
+xtickangle(50);
+title('STFT for the 7th channel of flexion');
+
+%% Low-pass band filter for extension
+fc=0.4; %cutoff frequency
+fs=200; %sample frequency from Myo
+fn = fs/2; %Nyquist frequency is half of the sample frequency
+[b,a]= butter(6,(fc/fn),'low');% six order low pass filter
+
+for j=1:230
+    for i=1:8
+        low_pass_data_ext{j}(:,i) = filter(b,a,Ext{j}(:,i+1));
+    end
+end
+
+
+for j=1:207
+    for i=1:8
+        low_pass_data_flx{j}(:,i) = filter(b,a,Flx{j}(:,i+1));
+    end
+end
+
+%% Highpass band filter for extension
+fc=0.4; %cutoff frequency
+fs=200; %sample frequency from Myo
+fn = fs/2; %Nyquist frequency is half of the sample frequency
+[z,p] = butter(6,(fc/fn),'high');%six order high pass filter
+
+for j=1:230
+    for i=1:8
+        high_pass_data_ext{j}(:,i) = filter(z,p,Ext{j}(:,i+1));
+    end
+end
+
+% Highpass band filter
+
+for j=1:207
+    for i=1:8
+        high_pass_data_flx{j}(:,i) = filter(z,p,Flx{j}(:,i+1));
+    end
+end
+
+%% Root mean square
+for j=1:230
+    for i=1:8
+        rms_data_ext(j,i) = rms(Ext{j}(:,i+1));
+    end
+end
+
+for j=1:207
+    for i=1:8
+        rms_data_flx(j,i) = rms(Flx{j}(:,i+1));
+    end
+end
+
+%% Moving average
+for j=1:230
+    for i=1:8
+        smoothed_data_ext{j}(:,i) = smooth(Ext{j}(:,i+1));
+    end
+end
+
+% Plot EMG and smoothed EMG extension
+figure
+subplot(2,1,1)
+plot(Ext{1}(:,1),Ext{1}(:,8))
+title('Raw EMG extension')
+
+subplot(2,1,2)
+plot(Ext{1}(:,1),smoothed_data_ext{1}(:,8))
+title('Smoothed EMG extension')
+
+for j=1:207
+    for i=1:8
+        smoothed_data_flx{j}(:,i) = smooth(Flx{j}(:,i+1));
+    end
+end
+
+% Plot EMG and smoothed EMG flexion
+figure
+subplot(2,1,1)
+plot(Flx{1}(:,1),Flx{1}(:,8))
+title('Raw EMG flexion')
+
+subplot(2,1,2)
+plot(Flx{1}(:,1),smoothed_data_flx{1}(:,8))
+title('Smoothed EMG flexion')
+
+%% Perform (DWT) at level 5 using the Haar wavelet.
+lev   = 5;
+wname = 'db1';
+
+for j= 1:230
+    for i=1:8
+        [haar_decomp_ext{j}(:,i), haar_coeff_num_ext{j}(:,1)] = wavedec(Ext{j}(:,i+1),lev,wname);
+    end
+end
+
+
+for j= 1:207
+    for i=1:8
+        [haar_decomp_flx{j}(:,i), haar_coeff_num_flx{j}(:,1)] = wavedec(Flx{j}(:,i+1),lev,wname);
+    end
+end
+%% Perform (DWT) at level 5 using Daubechies 8.
+
+lev   = 5;
+wname = 'db8';
+
+for j= 1:230
+    for i=1:8
+        [db8_decomp_ext{j}(:,i), db8_coeff_num_ext{j}(:,1)] = wavedec(Ext{j}(:,i+1),lev,wname);
+    end
+end
+
+
+for j= 1:207
+    for i=1:8
+        [db8_decomp_flx{j}(:,i), db8_coeff_num_flx{j}(:,1)] = wavedec(Flx{j}(:,i+1),lev,wname);
+    end
+end
+%% Perform DWT at level 5 using Symlet 8
+lev   = 5;
+wname = 'sym8';
+
+for j= 1:230
+    for i=1:8
+        [sym8_decomp_ext{j}(:,i), sym_coeff_num_ext{j}(:,1)] = wavedec(Ext{j}(:,i+1),lev,wname);
+    end
+end
+
+
+for j= 1:207
+    for i=1:8
+        [sym8_decomp_flx{j}(:,i), sym_coeff_num_flx{j}(:,1)] = wavedec(Flx{j}(:,i+1),lev,wname);
+    end
+end
+
+%% Perform DWT at level 5 using Symlet 4
+lev   = 5;
+wname = 'sym4';
+
+for j= 1:230
+    for i=1:8
+        [sym4_decomp_ext{j}(:,i), sym_coeff_num_ext{j}(:,1)] = wavedec(Ext{j}(:,i+1),lev,wname);
+    end
+end
+
+
+for j= 1:207
+    for i=1:8
+        [sym4_decomp_flx{j}(:,i), sym_coeff_num_flx{j}(:,1)] = wavedec(Flx{j}(:,i+1),lev,wname);
+    end
+end
+%% Perform DWT at level 5 using BiorSplines 1.3
+lev   = 5;
+wname = 'bior1.3';
+
+for j= 1:230
+    for i=1:8
+        [bior13_decomp_ext{j}(:,i), bior_coeff_num_ext{j}(:,1)] = wavedec(Ext{j}(:,i+1),lev,wname);
+    end
+end
+
+
+for j= 1:207
+    for i=1:8
+        [bior13_decomp_flx{j}(:,i), bior_coeff_num_flx{j}(:,1)] = wavedec(Flx{j}(:,i+1),lev,wname);
+    end
+end
+
+%% Perform DWT at level 5 using BiorSplines 2.2
+lev   = 5;
+wname = 'bior2.2';
+
+for j= 1:230
+    for i=1:8
+        [bior22_decomp_ext{j}(:,i), bior_coeff_num_ext{j}(:,1)] = wavedec(Ext{j}(:,i+1),lev,wname);
+    end
+end
+
+
+for j= 1:207
+    for i=1:8
+        [bior22_decomp_flx{j}(:,i), bior_coeff_num_flx{j}(:,1)] = wavedec(Flx{j}(:,i+1),lev,wname);
+    end
+end
+
+%% Perform DWT at level 5 using Coiflets 3
+lev   = 5;
+wname = 'coif3';
+
+for j= 1:230
+    for i=1:8
+        [coif3_decomp_ext{j}(:,i), coif3_coeff_num_ext{j}(:,1)] = wavedec(Ext{j}(:,i+1),lev,wname);
+    end
+end
+
+
+for j= 1:207
+    for i=1:8
+        [coif3_decomp_flx{j}(:,i), coif3_coeff_num_flx{j}(:,1)] = wavedec(Flx{j}(:,i+1),lev,wname);
+    end
+end
+
+%% Perform DWT at level 5 using Coiflets 4
+lev   = 5;
+wname = 'coif4';
+
+for j= 1:230
+    for i=1:8
+        [coif4_decomp_ext{j}(:,i), coif4_coeff_num_ext{j}(:,1)] = wavedec(Ext{j}(:,i+1),lev,wname);
+    end
+end
+
+
+for j= 1:207
+    for i=1:8
+        [coif4_decomp_flx{j}(:,i), coif4_coeff_num_flx{j}(:,1)] = wavedec(Flx{j}(:,i+1),lev,wname);
+    end
+end
+
+%% Perform CWT using bump
+wname = 'bump';
+Fs=200;
+
+for j= 1:230
+    for i=1:8
+        bump_decomp_ext{j,i} = real(cwt(Ext{j}(:,i+1),wname,Fs));
+    end
+end
+
+
+for j= 1:207
+    for i=1:8
+        bump_decomp_flx{j,i} = real(cwt(Flx{j}(:,i+1),wname,Fs));
+    end
+end
+
+%% Perform CWT using morse
+wname = 'morse';
+Fs=200;
+
+for j= 1:230
+    for i=1:8
+        morse_decomp_ext{j,i} = real(cwt(Ext{j}(:,i+1),wname,Fs));
+    end
+end
+
+
+for j= 1:207
+    for i=1:8
+        morse_decomp_flx{j,i} = real(cwt(Flx{j}(:,i+1),wname,Fs));
+    end
+end
+
+%% Perform CWT using amor
+wname = 'amor';
+Fs=200;
+
+for j= 1:230
+    for i=1:8
+        amor_decomp_ext{j,i} = real(cwt(Ext{j}(:,i+1),wname,Fs));
+    end
+end
+
+
+for j= 1:207
+    for i=1:8
+        amor_decomp_flx{j,i} = real(cwt(Flx{j}(:,i+1),wname,Fs));
+    end
+end
+%% Auto regressive power spectral density
+% pxx = zeros(4552,8);
+% for i=1:8
+%     pxx(:,i) = pyulear(M1(:,i+1),4);
+% end
+
+%% Rectification and butterworth lowpass filter
+
+% for i=1:8
+%     Rectified_EMG = abs(M1(:,i+1));
+% end
+% 
+% Fe=200; %Samling frequency
+% Fc=3; %Cut-off frequency
+% N=4; %Filter Order
+% [B, A] = butter(N,Fc*2/Fe, 'low'); %filter's parameters
+% EMG=filtfilt(B, A, Rectified_EMG); %in the case of Off-line treatment
+

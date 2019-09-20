@@ -1,0 +1,66 @@
+\select@language {english}
+\contentsline {paragraph}{Abstract}{v}{section*.1}
+\contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}
+\contentsline {section}{\numberline {1.1}Motivation}{1}{section.1.1}
+\contentsline {section}{\numberline {1.2}State of the art}{3}{section.1.2}
+\contentsline {section}{\numberline {1.3}Electromyography}{4}{section.1.3}
+\contentsline {section}{\numberline {1.4}Stationary signals}{5}{section.1.4}
+\contentsline {section}{\numberline {1.5}Non-stationary signals}{7}{section.1.5}
+\contentsline {subsection}{\numberline {1.5.1}Cause of non-stationarity in EMG signals}{8}{subsection.1.5.1}
+\contentsline {section}{\numberline {1.6}Thalmic Myo}{8}{section.1.6}
+\contentsline {section}{\numberline {1.7}IMU of the Myo Armband}{9}{section.1.7}
+\contentsline {section}{\numberline {1.8}Gesture Recognition}{10}{section.1.8}
+\contentsline {section}{\numberline {1.9}Armband positioning}{10}{section.1.9}
+\contentsline {chapter}{\numberline {2}Methods}{13}{chapter.2}
+\contentsline {section}{\numberline {2.1}Pipeline summary}{13}{section.2.1}
+\contentsline {section}{\numberline {2.2}Data collection}{13}{section.2.2}
+\contentsline {section}{\numberline {2.3}Cross-Validation}{14}{section.2.3}
+\contentsline {section}{\numberline {2.4}Windowing}{16}{section.2.4}
+\contentsline {subsection}{\numberline {2.4.1}Windowing in current work}{16}{subsection.2.4.1}
+\contentsline {section}{\numberline {2.5}Feature extraction}{17}{section.2.5}
+\contentsline {subsection}{\numberline {2.5.1}Moving average}{17}{subsection.2.5.1}
+\contentsline {subsection}{\numberline {2.5.2}Root mean square}{18}{subsection.2.5.2}
+\contentsline {subsection}{\numberline {2.5.3}Short-time Fourier transform}{18}{subsection.2.5.3}
+\contentsline {subsection}{\numberline {2.5.4}Wavelet Analysis}{22}{subsection.2.5.4}
+\contentsline {subsection}{\numberline {2.5.5}Continuous wavelet transform}{22}{subsection.2.5.5}
+\contentsline {subsection}{\numberline {2.5.6}Discrete wavelet transform}{23}{subsection.2.5.6}
+\contentsline {subsubsection}{\numberline {2.5.6.1}Haar wavelet: An example of wavelet function}{25}{subsubsection.2.5.6.1}
+\contentsline {subsection}{\numberline {2.5.7}Feature extraction in current work}{26}{subsection.2.5.7}
+\contentsline {section}{\numberline {2.6}Training and classification}{27}{section.2.6}
+\contentsline {subsection}{\numberline {2.6.1}Forward selection, backward elimination}{27}{subsection.2.6.1}
+\contentsline {section}{\numberline {2.7}Artificial intelligence}{28}{section.2.7}
+\contentsline {subsection}{\numberline {2.7.1}Biological and artificial neural networks}{28}{subsection.2.7.1}
+\contentsline {subsection}{\numberline {2.7.2}Artificial neural networks}{30}{subsection.2.7.2}
+\contentsline {subsection}{\numberline {2.7.3}Deep learning}{31}{subsection.2.7.3}
+\contentsline {subsection}{\numberline {2.7.4}Deep learning architecture}{32}{subsection.2.7.4}
+\contentsline {subsection}{\numberline {2.7.5}Deep feed forward networks}{32}{subsection.2.7.5}
+\contentsline {subsection}{\numberline {2.7.6}Learning Conditional Statistics}{34}{subsection.2.7.6}
+\contentsline {subsection}{\numberline {2.7.7}Common Activation Functions}{35}{subsection.2.7.7}
+\contentsline {subsection}{\numberline {2.7.8}Identity Activation Function}{36}{subsection.2.7.8}
+\contentsline {subsection}{\numberline {2.7.9}Logistic Sigmoid}{36}{subsection.2.7.9}
+\contentsline {subsection}{\numberline {2.7.10}Hyperbolic Tangent}{36}{subsection.2.7.10}
+\contentsline {subsection}{\numberline {2.7.11}Rectified Linear Units}{37}{subsection.2.7.11}
+\contentsline {subsection}{\numberline {2.7.12}Softmax function}{38}{subsection.2.7.12}
+\contentsline {subsection}{\numberline {2.7.13}Minimization of the cost function}{38}{subsection.2.7.13}
+\contentsline {subsection}{\numberline {2.7.14}Backpropagation}{41}{subsection.2.7.14}
+\contentsline {subsection}{\numberline {2.7.15}Summary of training neural network}{42}{subsection.2.7.15}
+\contentsline {section}{\numberline {2.8}Data evaluation}{43}{section.2.8}
+\contentsline {chapter}{\numberline {3}Results}{47}{chapter.3}
+\contentsline {section}{\numberline {3.1}Parameter adjustment}{47}{section.3.1}
+\contentsline {section}{\numberline {3.2}Final evaluation}{49}{section.3.2}
+\contentsline {chapter}{\numberline {4}Discussion}{55}{chapter.4}
+\contentsline {section}{\numberline {4.1}Parameter Adjustment}{55}{section.4.1}
+\contentsline {subsection}{\numberline {4.1.1}Increase on the window step}{55}{subsection.4.1.1}
+\contentsline {subsection}{\numberline {4.1.2}Forward Selection, Backward Elimination: a hybrid approach}{56}{subsection.4.1.2}
+\contentsline {section}{\numberline {4.2}Evaluation results}{56}{section.4.2}
+\contentsline {chapter}{\numberline {5}Conclusion}{59}{chapter.5}
+\contentsline {section}{\numberline {5.1}Future Work}{60}{section.5.1}
+\contentsline {subsection}{\numberline {5.1.1}Size of data}{60}{subsection.5.1.1}
+\contentsline {subsection}{\numberline {5.1.2}Amount of features and reduction of the feature vector}{60}{subsection.5.1.2}
+\contentsline {subsection}{\numberline {5.1.3}Network Architectures}{61}{subsection.5.1.3}
+\vspace *{\baselineskip }
+\contentsline {chapter}{Bibliography}{63}{section*.10}
+\contentsline {chapter}{List of Figures}{68}{section*.10}
+\contentsline {chapter}{List of Tables}{71}{section*.10}
+\contentsline {chapter}{\numberline {A}Appendix}{73}{appendix.A}
+\contentsline {section}{\numberline {A.1}List of Abbreviations}{73}{section.A.1}

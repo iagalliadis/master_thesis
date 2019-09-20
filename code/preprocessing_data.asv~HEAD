@@ -1,0 +1,306 @@
+function Out = preprocessing_data(Ext_dim,Flx_dim,crossValidationTestFold,loadTestData) % crossValidationTestFold = number from 1-5, loadTestData = bool: load test data,or load train data
+mainFolderExtension = 'C:\Temp\MATLAB\repos\code\thumb_flex_extend\cutted\extensions\';
+mainFolderFlexion = 'C:\Temp\MATLAB\repos\code\thumb_flex_extend\cutted\flexions\';
+tic
+try
+	Out.Ext = cell(Ext_dim,1);Out.Flx = cell(Flx_dim,1);
+    Out.Stft_ext = cell(Ext_dim,8);Out.Stft_flx = cell(Flx_dim,8); 
+	Out.Rms_ext = zeros(Ext_dim,8); Out.Rms_flx = zeros(Flx_dim,8);
+    Out.Smoothed_ext = cell(Ext_dim,1);Out.Smoothed_flx = cell(Flx_dim,1);
+    %DWT
+    Out.Haar_ext = cell(Ext_dim,8,3);Out.Haar_flx = cell(Flx_dim,8,3); 
+	Out.Sym4_ext = cell(Ext_dim,8,3);Out.Sym4_flx = cell(Flx_dim,8,3);
+    Out.Sym8_ext = cell(Ext_dim,8,3);Out.Sym8_flx = cell(Flx_dim,8,3);
+    Out.Db8_ext = cell(Ext_dim,8,3);Out.Db8_flx = cell(Flx_dim,8,3);
+    Out.Bior13_ext = cell(Ext_dim,8,3);Out.Bior13_flx = cell(Flx_dim,8,3);
+    Out.Coif3_ext = cell(Ext_dim,8,3);Out.Coif3_flx = cell(Flx_dim,8,3); 
+	Out.Coif4_ext = cell(Ext_dim,8,3);Out.Coif4_flx = cell(Flx_dim,8,3);
+    %CWT
+    Out.Amor_ext = cell(Ext_dim,8);Out.Amor_flx = cell(Flx_dim,8);
+    Out.Bump_ext = cell(Ext_dim,8);Out.Bump_flx = cell(Flx_dim,8);
+	Out.Morse_ext = cell(Ext_dim,8);Out.Morse_flx = cell(Flx_dim,8);
+catch ME
+	errorMessage = sprintf('Error in program %s.\n\nError Message:\n%s', ...
+		mfilename, ME.message);
+	uiwait(warndlg(errorMessage));
+end
+%% read all data from csv files of one fold either test or train to memory
+    % TODO: modify path to point to either train or test (loadTestData) and
+    % according fold (crossValidationTestFold)
+    if false % TODO: REMOVE IF YOU HAVE THE 5-FOLD CROSS VALIDATION
+    loadTmp = 'train';
+    if loadTestData
+        loadTmp = 'test';
+    end
+    dirnameExtionsion = fullfile(mainFolderExtension,loadTmp, num2str(crossValidationTestFold));
+    dirnameFlexion = fullfile(mainFolderFlexion,loadTmp, num2str(crossValidationTestFold));
+    if ~isdir(dirnameExtionsion);     error(['dir ' dirnameExtionsion ' does not exist']); end
+    if ~isdir(dirnameFlexion);        error(['dir ' dirnameFlexion ' does not exist']);    end
+    dExtension = dir(dirnameExtionsion);
+    dFlexion = dir(dirnameFlexion);
+    Original.Ext = {};
+    Original.Flex = {};
+    for i=1:numel(dExtension)
+        if ~isdir(fullfile(dExtension,d(i).name))
+            Original.Ext{numel(Original.Ext)} = csvread(fullfile(dExtension,d(i).name));
+        end
+    end
+    for i=1:numel(dFlexion)
+        if ~isdir(fullfile(dFlexion,d(i).name))
+            Original.Flex{numel(Original.Flex)} = csvread(fullfile(dFlexion,d(i).name));
+        end
+    end
+%% expand data according to window length
+    j = 1;
+    jj = 0;
+    index = zeros(230,1);
+    for i=1:numel(Original.Ext)
+        [rows, ~] = size(Original.Ext{i});
+        if rows >= 128
+            while (128 + jj) <= rows
+                Out.Ext{j} = Original.Ext{i}(jj+1:jj+128,2:9);
+                j = j+1;
+                jj = jj + 1;
+            end
+        else % data is thrown because of size
+            index(length+1) = i;
+        end
+   [dropped_ext,~] = size(find(index));
+    end
+    
+    end
+    
+    
+%% Import data for extensions and flexions of the thumb
+j = 1;
+jj = 0;
+index = zeros(230,1);
+for i=1:Ext_dim
+    Original.Ext{i} = csvread(strcat('C:\Temp\MATLAB\repos\code\thumb_flex_extend\cutted\extensions\extension_',num2str(i),'.csv'));
+   [rows, ~] = size(Original.Ext{i});
+   if rows >= 128
+       while (128 + jj) <= rows
+       Out.Ext{i,jj+1} = Original.Ext{i}(jj+1:jj+128,2:9);
+       jj = jj + 1;
+       end
+   else % .csv file is thrown because of size
+       index(j,1) = i;
+       j = j+1;
+   end
+   [dropped_ext,~] = size(find(index));
+end
+
+j = 1;
+for i=1:Flx_dim
+   [rows, cols] = size(csvread(strcat('C:\Temp\MATLAB\repos\code\thumb_flex_extend\cutted\extensions\flexion_',num2str(i),'.csv')));
+   if rows >= 128
+       Out.Ext{i} = csvread(strcat('C:\Temp\MATLAB\repos\code\thumb_flex_extend\cutted\extensions\flexion_',num2str(i),'.csv'),0,0,'A1..I128');
+   else
+       index(j,1) = i;
+       j = j+1;
+   end
+   [dropped_flex,~] = size(index);
+end
+
+%% plot the first EMG Ext signal of the cell 
+
+lineStyles = {'-', '--', ':', '-.'};
+myColors = distinguishable_colors(8);
+legend_str = cell(8,1);
+figure
+
+for i=2:9
+plot(linspace(0,1,length(Out.Ext{1}(:,1))),Out.Ext{1}(:,i),...
+    'linestyle',lineStyles{rem(i-1,numel(lineStyles))+1},...
+    'color',myColors(i-1,:),...
+    'linewidth',1.5);
+hold on;
+legend_str{i-1}=num2str(i-1);
+end
+legend(strcat('ch',legend_str),'location','Northwest')
+title('EMG signal for thumb extension')
+
+% plot the first EMG Flx signal of the cell 
+figure
+
+for i=2:9
+plot(linspace(0,1,length(Out.Flx{1}(:,1))),Out.Flx{1}(:,i),...
+    'linestyle',lineStyles{rem(i-1,numel(lineStyles))+1},...
+    'color',myColors(i-1,:),...
+    'linewidth',1.5);
+hold on;
+legend_str{i-1}=num2str(i-1);
+end
+legend(strcat('ch',legend_str),'location','Northwest')
+title('EMG signal for thumb flexion')
+
+%% STFT for EMG extension
+fs = 200;
+for j=1:Ext_dim
+    for i=1:8
+        Out.Stft_ext{j,i} = real(spectrogram(Out.Ext{j}(:,i+1),[],[],[],fs));
+    end
+end
+
+%plot the STFT for extension
+figure
+spectrogram(Out.Ext{1}(:,8),[],[],[],fs,'yaxis');
+set(gca, 'ytick', 0:5:100);
+ytickangle(50);
+title('STFT for the 7th channel of extension');
+
+
+% STFT for EMG flexion
+for j=1:Flx_dim
+    for i=1:8
+        Out.Stft_flx{j,i} = real(spectrogram(Out.Flx{j}(:,i+1),[],[],[],fs));
+    end
+end
+
+%plot the STFT for flexion
+figure
+spectrogram(Out.Flx{1}(:,8),[],[],[],fs,'yaxis');
+set(gca, 'ytick', 0:5:100);
+ytickangle(50);
+title('STFT for the 7th channel of flexion');
+
+%% Low-pass band filter for extension
+% fc=0.04; %cutoff frequency
+% fs=200; %sample frequency from Myo
+% fn = fs/2; %Nyquist frequency is half of the sample frequency
+% [b,a]= butter(6,(fc/fn),'low');% six order low pass filter
+% 
+% for j=1:Ext_dim
+%     for i=1:8
+%         low_pass_data_ext{j}(:,i) = filter(b,a,Ext{j}(:,i+1));
+%     end
+% end
+% 
+% 
+% for j=1:Flx_dim
+%     for i=1:8
+%         low_pass_data_flx{j}(:,i) = filter(b,a,Flx{j}(:,i+1));
+%     end
+% end
+% 
+%% Highpass band filter for extension
+% fc=0.04; %cutoff frequency
+% fs=200; %sample frequency from Myo
+% fn = fs/2; %Nyquist frequency is half of the sample frequency
+% [z,p] = butter(6,(fc/fn),'high'); %six order high pass filter
+% 
+% for j=1:Ext_dim
+%     for i=1:8
+%         high_pass_data_ext{j}(:,i) = filter(z,p,Ext{j}(:,i+1));
+%     end
+% end
+% 
+% % Highpass band filter
+% 
+% for j=1:Flx_dim
+%     for i=1:8
+%         high_pass_data_flx{j}(:,i) = filter(z,p,Flx{j}(:,i+1));
+%     end
+% end
+
+%% Root mean square
+for j=1:Ext_dim
+    for i=1:8
+        Out.Rms_ext(j,i) = rms(Out.Ext{j}(:,i+1));
+    end
+end
+
+for j=1:Flx_dim
+    for i=1:8
+        Out.Rms_flx(j,i) = rms(Out.Flx{j}(:,i+1));
+    end
+end
+
+%% Moving average
+
+for j=1:Ext_dim
+    for i=1:8
+        Out.Smoothed_ext{j}(:,i) = smooth(Out.Ext{j}(:,i+1));
+    end
+end
+
+% Plot EMG and smoothed EMG extension
+figure
+subplot(2,1,1)
+plot(Out.Ext{1}(:,1),Out.Ext{1}(:,8))
+title('Raw EMG extension')
+
+subplot(2,1,2)
+plot(Out.Ext{1}(:,1),Out.Smoothed_ext{1}(:,8))
+title('Smoothed EMG extension')
+
+
+for j=1:Flx_dim
+    for i=1:8
+        Out.Smoothed_flx{j}(:,i) = smooth(Out.Flx{j}(:,i+1));
+    end
+end
+
+% Plot EMG and smoothed EMG flexion
+figure
+subplot(2,1,1)
+plot(Out.Flx{1}(:,1),Out.Flx{1}(:,8))
+title('Raw EMG flexion')
+
+subplot(2,1,2)
+plot(Out.Flx{1}(:,1),Out.Smoothed_flx{1}(:,8))
+title('Smoothed EMG flexion')
+
+%% Perform (wavedec) using various wavelets.
+
+for j= 1:Ext_dim
+    for i=1:8
+        for lvl = 3:5
+            Out.Haar_ext{j, i, lvl - 2} = wavedec(Out.Ext{j}(:,i+1), lvl, 'haar');
+            Out.Db8_ext{j, i, lvl - 2} = wavedec(Out.Ext{j}(:,i+1),lvl,'db8');
+            Out.Sym4_ext{j, i, lvl - 2} = wavedec(Out.Ext{j}(:,i+1),lvl,'sym4');
+            Out.Sym8_ext{j, i, lvl - 2} = wavedec(Out.Ext{j}(:,i+1),lvl,'sym8');
+            Out.Bior13_ext{j, i, lvl - 2} = wavedec(Out.Ext{j}(:,i+1),lvl,'bior1.3');
+            Out.Bior22_ext{j, i, lvl - 2} = wavedec(Out.Ext{j}(:,i+1),lvl,'bior2.2');
+            Out.Coif3_ext{j, i, lvl - 2} = wavedec(Out.Ext{j}(:,i+1),lvl,'coif3');
+            Out.Coif4_ext{j, i, lvl - 2} = wavedec(Out.Ext{j}(:,i+1),lvl,'coif4');
+        end
+    end
+end
+
+for j= 1:Flx_dim
+    for i=1:8
+        for lvl = 3:5
+            Out.Haar_flx{j, i, lvl - 2} = wavedec(Out.Flx{j}(:,i+1), lvl, 'haar');
+            Out.Db8_flx{j, i, lvl - 2} = wavedec(Out.Flx{j}(:,i+1),lvl,'db8');
+            Out.Sym4_flx{j, i, lvl - 2} = wavedec(Out.Flx{j}(:,i+1),lvl,'sym4');
+            Out.Sym8_flx{j, i, lvl - 2} = wavedec(Out.Flx{j}(:,i+1),lvl,'sym8');
+            Out.Bior13_flx{j, i, lvl - 2} = wavedec(Out.Flx{j}(:,i+1),lvl,'bior1.3');
+            Out.Bior22_flx{j, i, lvl - 2} = wavedec(Out.Flx{j}(:,i+1),lvl,'bior2.2');
+            Out.Coif3_flx{j, i, lvl - 2} = wavedec(Out.Flx{j}(:,i+1),lvl,'coif3');
+            Out.Coif4_flx{j, i, lvl - 2} = wavedec(Out.Flx{j}(:,i+1),lvl,'coif4');
+        end
+    end
+end
+%% Perform CWT using various wavelets
+Fs = 200;
+t = linspace(-1,1,512);
+s = 1-abs(t);
+
+for j= 1:Ext_dim
+    for i=1:8
+        Out.Amor_ext{j,i} = real(cwt(Out.Ext{j}(:,i+1),'amor',Fs)');
+        Out.Bump_ext{j,i} = real(cwt(Out.Ext{j}(:,i+1),'bump',Fs)');
+        Out.Morse_ext{j,i} = real(cwt(Out.Ext{j}(:,i+1),'morse',Fs)');
+    end
+end
+
+for j= 1:Flx_dim
+    for i=1:8
+        Out.Amor_flx{j,i} = real(cwt(Out.Flx{j}(:,i+1),'amor',Fs)');
+        Out.Bump_flx{j,i} = real(cwt(Out.Flx{j}(:,i+1),'bump',Fs)');
+        Out.Morse_flx{j,i} = real(cwt(Out.Flx{j}(:,i+1),'morse',Fs)');
+    end
+end
+toc
+end

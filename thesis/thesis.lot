@@ -1,0 +1,16 @@
+\select@language {english}
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {2.1}{\ignorespaces The values of W prior to each iteration and the update amounts.\relax }}{40}{table.2.1}
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {3.1}{\ignorespaces Combined features and ran on neural net with one hidden layer and five hidden neurons.\relax }}{50}{table.3.1}
+\contentsline {table}{\numberline {3.2}{\ignorespaces Combined features per 3 and ran on neural net with one hidden layer and five hidden neurons.\relax }}{50}{table.3.2}
+\contentsline {table}{\numberline {3.3}{\ignorespaces Combined features per 3 and ran on neural net with one hidden layer and five hidden neurons.\relax }}{50}{table.3.3}
+\contentsline {table}{\numberline {3.4}{\ignorespaces Combined features per 3 and ran on neural net with one hidden layer and five hidden neurons.\relax }}{50}{table.3.4}
+\contentsline {table}{\numberline {3.5}{\ignorespaces Best three performances per layer. Combined features per 3 and ran on neural net with incrementing the number of layers from one to eight.\relax }}{51}{table.3.5}
+\contentsline {table}{\numberline {3.6}{\ignorespaces Detection accuracies for extension and flexion of finger gestures with calibrated EMGs and trained with a neural network with 8 hidden layers and 5 hidden neurons in each layer.\relax }}{51}{table.3.6}
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {4.1}{\ignorespaces Average detection accuracies per feature from Table \ref {table:sym4sym8_8layers}\relax }}{57}{table.4.1}
+\contentsline {table}{\numberline {4.2}{\ignorespaces Average detection accuracies per finger gesture from Table \ref {table:sym4sym8_8layers}\relax }}{57}{table.4.2}
+\addvspace {10\p@ }
+\addvspace {10\p@ }
